@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Technology &#8211; seanworld</title>
+	<atom:link href="http://seanworld.net/original/category/technology/feed/" rel="self" type="application/rss+xml" />
+	<link>http://seanworld.net:10214/original</link>
+	<description>ぼくのちょっとした挑戦の記録</description>
+	<lastBuildDate>Wed, 18 Oct 2023 04:40:29 +0000</lastBuildDate>
+	<language>ja</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.3.2</generator>
+	<item>
+		<title>Ubuntu 22.04以降でsshd待ち受けPortが変更できない</title>
+		<link>http://seanworld.net:10214/original/technology/678/</link>
+					<comments>http://seanworld.net:10214/original/technology/678/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Wed, 18 Oct 2023 03:33:43 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<guid isPermaLink="false">http://seanworld.net:10214/original/?p=678</guid>
+
+					<description><![CDATA[/etc/sshd/sshd_...]]></description>
+										<content:encoded><![CDATA[<p><code>/etc/sshd/sshd_config</code><br />
+をいじれば、今まではポートが変更できた。</p>
+<p>しかし、Ubuntu 22.04からはそうではないようです。</p>
+<p><a href="http://https://www.uni-sonia.com/archives/1477">https://www.uni-sonia.com/archives/1477</a></p>
+<p>本記事に転記しつつ、備忘録として残しておきたいと思います。</p>
+<p>設定ファイルの置き場所として、下記ディレクトリを作成します。<br />
+<code> mkdir -p /etc/systemd/system/ssh.socket.d </code><br />
+「listen.conf」という名称の設定ファイルをエディタで作成します。<br />
+自分のお気に入りはnanoですが、好きなものを使ってもらってかまいません。</p>
+<p><code>nano /etc/systemd/system/ssh.socket.d/listen.conf</code></p>
+<p>設定ファイルには待ち受けポートに関する記述のみを書いておきます。<br />
+ここで、ポート名を空にした「ListenStream=」行を作っておくのがワンポイントのようです。<br />
+そのように記述しておかないと、デフォルトの22番ポートと変更後のポートの両方で待ち受け状態になってしまうようです。</p>
+<pre><code>[Socket]
+ListenStream=
+ListenStream=※任意のポート※</code></pre>
+<p>この手順は必要ないかもしれませんが、SSH接続をソケット接続でのみ待ち受けるように設定します。</p>
+<pre><code>systemctl disable --now ssh.service
+systemctl enable --now ssh.socket</code></pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/678/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>CentOS7のyum自動アップデート設定</title>
+		<link>http://seanworld.net:10214/original/technology/103/</link>
+					<comments>http://seanworld.net:10214/original/technology/103/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:38 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=103</guid>
+
+					<description><![CDATA[OSやらアプリケーションやらソ...]]></description>
+										<content:encoded><![CDATA[<p><img decoding="async" src="../../wp-content/image-7.png" alt="" /><br />
+OSやらアプリケーションやらソフトウェアたるものは日々バグフィックスされ続けている。<br />
+深刻なセキュリティ脆弱性も、ちょいちょい公表される。<br />
+というわけで、犯罪組織渦巻くインターネットにサーバーを公開するなら、せめて公式のセキュリティパッチだけでも適用し続けなければならん。しかし、めんどくさい。</p>
+<h3>cron-yum のインストール・設定</h3>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;# yum install yum-cron.noarch</code></pre>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;# nano /etc/yum/yum-cron.conf</code></pre>
+<p>以下のように編集することで自動アップデートが有効になります。</p>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;apply_updates = no</code></pre>
+<p>↓</p>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;apply_updates = yes</code></pre>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;# systemctl start yum-cron
+# systemctl enable yum-cron</code></pre>
+<h3>確認</h3>
+<pre><code>&lt;pre class=&quot;wp-block-preformatted&quot;&gt;# yum history list all</code></pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/103/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Webフォントはサイト高速化の大敵！デメリットを調査</title>
+		<link>http://seanworld.net:10214/original/technology/108/</link>
+					<comments>http://seanworld.net:10214/original/technology/108/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:38 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=108</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/108/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>SSH待ち受けポートの変更手順【CentOS】</title>
+		<link>http://seanworld.net:10214/original/technology/94/</link>
+					<comments>http://seanworld.net:10214/original/technology/94/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:37 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=94</guid>
+
+					<description><![CDATA[CentOSログイン時、不穏な...]]></description>
+										<content:encoded><![CDATA[
+<p>CentOSログイン時、不穏なメッセージが表示された。</p>
+
+
+
+<pre class="wp-block-preformatted">There were *** failed login attempts since the last successful login</pre>
+
+
+
+<p>これは、前回ログイン（成功）時から、***回ログインに失敗したよ、というメッセージである。ポートをうっかりデフォルトの22番のままにしてしまっていたことが原因である。早速変えたいと思う。ちなみに、<a href="https://seanworld.net/linux/centos-ssh-failed-access/">過去に不正にログイン試行されたログ</a>はこの記事の手順で調べられる。</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://seanworld.net/wp-content/uploads/2019/06/image-6-1024x421.png" alt="" class="wp-image-100"/></figure>
+
+
+
+<h3 class="wp-block-heading">SSHDのコンフィグを変更</h3>
+
+
+
+<pre class="wp-block-preformatted"> # vi /etc/ssh/sshd_config
+ - # Port 22
+ + Port 6022
+<code> # systemctl restart sshd</code> </pre>
+
+
+
+<p>実はこれだけではだめなのです。（Ubuntuとかはこれだけで良かった気がしますが）</p>
+
+
+
+<h3 class="wp-block-heading">Firewallの設定も変更</h3>
+
+
+
+<pre class="wp-block-preformatted"># firewall-cmd --permanent --remove-service=ssh  //SSHのファイアウォールを削除
+# cp /usr/lib/firewalld/services/ssh.xml /etc/firewalld/services/ssh-6022.xml //XMLファイルを作成
+# <code>vi /etc/firewalld/services/ssh-6022.xml</code> //portを変更
+ -  &lt;port protocol="tcp" port="22"/&gt;
+ +  &lt;port protocol="tcp" port="6022"/&gt;
+<code># firewall-cmd --permanent --add-service=ssh-6022</code> // 6022のサービスを読み込む
+# firewall-cmd --reload </pre>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/94/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>不正なSSHログインを確認する方法【CentOS】</title>
+		<link>http://seanworld.net:10214/original/technology/96/</link>
+					<comments>http://seanworld.net:10214/original/technology/96/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:37 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=96</guid>
+
+					<description><![CDATA[VPSは便利、だけど世界中から...]]></description>
+										<content:encoded><![CDATA[
+<h3 class="wp-block-heading">VPSは便利、だけど世界中から狙われている</h3>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://seanworld.net/wp-content/uploads/2019/06/image-5-1024x553.png" alt="" class="wp-image-97"/></figure>
+
+
+
+<h3 class="wp-block-heading">認証に失敗しているログ</h3>
+
+
+
+<p><span class="marker-red">上の画像はサーバーに世界中からきている不正アクセスのログ</span>。<br />様々なユーザーで様々なIPから試行されているのがわかる。<br />調べるには下のコマンド。</p>
+
+
+
+<pre class="wp-block-preformatted"># cat /var/log/secure* | grep "sshd" | grep "Failed password"</pre>
+
+
+
+<h3 class="wp-block-heading">認証に成功しているログ</h3>
+
+
+
+<p>実はこっちの方が大事かもしれない。↑のは不正アクセスに失敗しているログだが、こちらのログに身に覚えのないものが残っていたら、それは<span class="marker-red">「不正アクセスされた後」</span>ということだ。</p>
+
+
+
+<pre class="wp-block-preformatted"># cat /var/log/secure* | grep "sshd" | grep "Accepted"</pre>
+
+
+
+<p>皆さんのサーバーはどうだったでしょうか？ぜひ一度試してみてください。<br />不正アクセス試行がいっぱいあったら、<a href="https://seanworld.net/linux/centos-ssh-port-change/">このページの対策をして</a>みて下さい</p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/96/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>SEOは全部無償で完了！Google PageSpeed Insites が無料でWordPressの改善点を全部教えてくれる件</title>
+		<link>http://seanworld.net:10214/original/technology/69/</link>
+					<comments>http://seanworld.net:10214/original/technology/69/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:36 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=69</guid>
+
+					<description><![CDATA[Google PageSpee...]]></description>
+										<content:encoded><![CDATA[
+<h3 class="wp-block-heading">Google PageSpeed Insites </h3>
+
+
+
+<figure class="wp-block-embed"><div class="wp-block-embed__wrapper">
+https://developers.google.com/speed/pagespeed/insights/
+</div></figure>
+
+
+
+<h3 class="wp-block-heading">課題</h3>
+
+
+
+<ul><li>せっかくWordpressサイトを作ったのに誰も来てくれない</li><li>Googleの検索順位を上げたい</li><li>スマホ対応が本当にできているか不安（というかちょっと重い）</li><li>SEO対策にお金はかけたくない</li></ul>
+
+
+
+<p>そんなワガママなアナタ！（って私もまさに今そういう状況なわけですが）<br />Googleさんがまた素晴らしいものをいつの間にか出してくれていました。</p>
+
+
+
+<h3 class="wp-block-heading">早速試してみた</h3>
+
+
+
+<p>自サイトのアドレスを入れて、「分析」。<br />10～20秒ぐらい待つと、早速スコアが表示されます。<br />しかも、パソコンとスマホ（モバイル）両方の観点で。</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://seanworld.net/wp-content/uploads/2019/06/01.png" alt="" class="wp-image-70"/></figure>
+
+
+
+<p>うーん。72点。いまいちですね。<br />さらに詳細も見てみましょう！！</p>
+
+
+
+<h3 class="wp-block-heading">サイトの悪いところを細かく教えてくれる</h3>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://i2.wp.com/seanworld.net/wp-content/uploads/2019/06/02.png?fit=1024%2C746" alt="" class="wp-image-72"/></figure>
+
+
+
+<p>結果を見ていく感じ、記事で使っている画像のサイズに問題がありそうです。<br />どうやって直せばいいんだろう。。。？</p>
+
+
+
+<h3 class="wp-block-heading">なんと対策や必要なプラグインまで教えてくれる</h3>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://i1.wp.com/seanworld.net/wp-content/uploads/2019/06/03.png?fit=1024%2C839" alt="" class="wp-image-74"/></figure>
+
+
+
+<p>なんと、必要なプラグインへの検索リンクや、Wordpress設定の替え方まで教えてくれるのです。<br />Google様、あなたが神か。</p>
+
+
+
+<p>SEOを生業にしている人はこの先厳しそうだなぁ。どうやって生きていくんだろ。</p>
+
+
+
+<h3 class="wp-block-heading">Googleは本気で世の中のWebをより良くしようとしている</h3>
+
+
+
+<p>世界の検索エンジンシェアをあらかた握ったGoogle。<br />世界中のドメインが、少しでもGoogleに気に入られようとしています。<br />このツールを使って、Googleの言うとおりにすれば、スコアを上げてもらえて、結果として世界中のユーザーも良質な記事を快適な速度で楽しめる、ということでしょうか。</p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/69/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Cocoonおすすめ設定を書き出してみる</title>
+		<link>http://seanworld.net:10214/original/technology/41/</link>
+					<comments>http://seanworld.net:10214/original/technology/41/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:35 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=41</guid>
+
+					<description><![CDATA[スキンの設定 これはお好み。ど...]]></description>
+										<content:encoded><![CDATA[
+<h3 class="wp-block-heading">スキンの設定</h3>
+
+
+
+<p>これはお好み。どのスキンでも途中で簡単に変えられるので、いろいろ試してみるとよいかも。</p>
+
+
+
+<h3 class="wp-block-heading">アイキャッチ画像の設定</h3>
+
+
+
+<p>記事の目を引くアイキャッチ画像。しっかりこだわりましょう。[Cocoon設定]-[画像]タブから、推奨設定は２つ。</p>
+
+
+
+<h4 class="wp-block-heading">アイキャッチ自動設定を有効にする</h4>
+
+
+
+<p>ついつい設定を忘れてしまうもの。このチェックがあればとりあえず記事内の最初の画像を設定してくれます。</p>
+
+
+
+<h4 class="wp-block-heading"> 本文上にアイキャッチを表示する　のチェックを外す（非表示にする） </h4>
+
+
+
+<p>記事の冒頭と文中（本命）に２回出てきて目障りです。記事内で使わないなら良いですが、ほとんどは使うと思うので、この設定は非表示にしておきましょう</p>
+
+
+
+<p></p>
+
+
+
+<p>以上です。思いついたらまた書きます。</p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/41/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>WordPress 入れるべきプラグイン10選</title>
+		<link>http://seanworld.net:10214/original/technology/27/</link>
+					<comments>http://seanworld.net:10214/original/technology/27/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:33 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=27</guid>
+
+					<description><![CDATA[WordPressで採用してい...]]></description>
+										<content:encoded><![CDATA[
+<p>WordPressで採用しているプラグインについて、備忘録的にまとめます。ぜひお試しあれ。</p>
+
+
+
+<h3 class="wp-block-heading">Jetpack</h3>
+
+
+
+<p>WordPress公式の純正プラグイン。紹介する３大機能の他にも、様々な機能をひとまとめにしています。何を入れればいいかわからん！という人はとりあえず入れておくだけで快速化。</p>
+
+
+
+<p><a href="https://ja.wordpress.org/plugins/jetpack/">https://ja.wordpress.org/plugins/jetpack/</a></p>
+
+
+
+<h4 class="wp-block-heading"> ダウンタイムのモニター </h4>
+
+
+
+<p>サイトがダウン（疎通不能）になると、メールアドレスに通知してくれる機能。自前でPingサーバーとか構築するのも手間がかかるので、プラグインで出来るのはGood。急なホスティング側の障害や、アクセス集中による鯖落ちを検知できます。</p>
+
+
+
+<h4 class="wp-block-heading"> パフォーマンスおよびスピード （画像のクラウドキャッシュ高速化）</h4>
+
+
+
+<p>これが無料なのはすごいと思います。負荷になる画像ファイルをWordpress.comにキャッシュさせ、自分のサーバーでは軽いHTMLを配信するだけ。オススメ機能です。</p>
+
+
+
+<h4 class="wp-block-heading">アクセス解析</h4>
+
+
+
+<p>基本的なところですが。アクセス数、アクセス元、検索キーワードなどが表示できます。</p>
+
+
+
+<h3 class="wp-block-heading"> <strong>Throws SPAM Away</strong> </h3>
+
+
+
+<p>SPAMフィルター。一番有名なのはAkismetだと思うんですが、これは実は無料版は「商用利用不可」なのです。まぁ使っちゃってる人も多いと思いますけど。</p>
+
+
+
+<p>日本語を含まないコメントを禁止できます。SPAMの99割は海外からの投稿ですからね。<br />かなり効果があります。</p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/27/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>WordPress環境構築@Sakura VPS</title>
+		<link>http://seanworld.net:10214/original/technology/19/</link>
+					<comments>http://seanworld.net:10214/original/technology/19/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:10:31 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=13</guid>
+
+					<description><![CDATA[SakuraVPS　の　OSイ...]]></description>
+										<content:encoded><![CDATA[
+<h3 class="wp-block-heading">SakuraVPS　の　OSインストール</h3>
+
+
+
+<p><a href="https://kusanagi.tokyo/cloud/kusanagi-for-sakuravps/">https://kusanagi.tokyo/cloud/kusanagi-for-sakuravps/</a></p>
+
+
+
+<h3 class="wp-block-heading">マルチサイト構築も可能</h3>
+
+
+
+<pre class="wp-block-preformatted"># kusanagi provision siteA　（Asite.com)<br /># kusanagi provision siteB　（Bsite.net）</pre>
+
+
+
+<p>これで同一ホスト（IP）に複数ドメインを割り当てることが可能になる。<br />ルーティング（Virtualhost）も自動で書き込んでくれているっぽい。すごい。</p>
+
+
+
+<h3 class="wp-block-heading">テーマのインストール</h3>
+
+
+
+<p><a href="https://wp-cocoon.com/">https://wp-cocoon.com/</a></p>
+
+
+
+<p>コクーンというテーマが無難そう。スキンを変えるだけである程度設定も可能。</p>
+
+
+
+<h3 class="wp-block-heading">必要なファイル編集</h3>
+
+
+
+<p> wp-config.php<br />  define(&#8216;FS_METHOD&#8217;, &#8216;direct&#8217;);</p>
+
+
+
+<p> /home/kusanagi/siteA/DocumentRoot/wp-content/themes<br />  の権限設定を行う</p>
+
+
+
+<pre class="wp-block-preformatted"># chmod 744 themes</pre>
+
+
+
+<p></p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/19/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Google AnalyticsとTag Manager、Search  Consoleの関係って？Googleの解析系ツールの複雑な関係を解説</title>
+		<link>http://seanworld.net:10214/original/technology/146/</link>
+					<comments>http://seanworld.net:10214/original/technology/146/#respond</comments>
+		
+		<dc:creator><![CDATA[seanworld9]]></dc:creator>
+		<pubDate>Fri, 13 Oct 2023 06:09:39 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[テクノロジー]]></category>
+		<guid isPermaLink="false">https://seanworld.net/?p=146</guid>
+
+					<description><![CDATA[Googleの解析系ツールは、...]]></description>
+										<content:encoded><![CDATA[
+<h2 class="wp-block-heading">Googleの解析系ツールは、いっぱいあって関係性がわからない</h2>
+
+
+
+<p>このWebサイト構築にあたって、アクセス解析の仕組みを入れようと思ったが、ただAnalyticsを入れるだけじゃなく、いろいろ周辺ツールがあるらしいと気づいた。しかし、関係性がわからず、どれから登録しなければいけないかわからなかった。</p>
+
+
+
+<ul><li>Google Analytics</li><li>Google Tag Manager</li><li>Google Search Console</li></ul>
+
+
+
+<h2 class="wp-block-heading">関係を整理すると、こんな図に</h2>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://seanworld.net/wp-content/uploads/2019/11/Google解析系サービスの関係.png" alt="" class="wp-image-147"/></figure>
+
+
+
+<h3 class="wp-block-heading">登録はそれぞれ必要</h3>
+
+
+
+<p>3つのツールがあり、連携ができるが、登録はそれぞれ必要である。<br />登録単位のところに記載のある枠ごとにそれぞれ登録が必要だ。<br /><span class="marker-red">連携は最後に行う。</span></p>
+
+
+
+<h3 class="wp-block-heading">これさえあれば、なにもいらない？</h3>
+
+
+
+<p>WordPressだと他にも解析系のプラグインはいっぱいあるが、上記3つのツールを入れれば、基本的には他には何もいらないだろう。</p>
+
+
+
+<p class="has-small-font-size">主役はGoogle Analyticsだが、一番価値があるデータはGoogle Search Cosoleの方だと思う。現代インターネットにおいて、Google検索以外からの流入は限りなくゼロに近いからだ。（SNSを頑張っている人は除く）</p>
+    	]]></content:encoded>
+					
+					<wfw:commentRss>http://seanworld.net:10214/original/technology/146/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
