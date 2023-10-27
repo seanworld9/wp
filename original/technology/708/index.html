@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<title>さくらのVPSを丸ごとバックアップ by Mondo Rescue &#8211; SeanWorld</title>
+<title>Vscode Python開発環境の構築on Windows &#8211; SeanWorld</title>
 <meta name='robots' content='max-image-preview:large' />
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 <link rel="alternate" type="application/rss+xml" title="SeanWorld &raquo; Feed" href="http://seanworld.net:10214/original/feed/" />
@@ -66,12 +66,12 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <script type='text/javascript' src='../../wp-content/themes/blogus/js/sticksy.min.js%3Fver=6.3.2' id='sticksy-js-js'></script>
 <script type='text/javascript' src='../../wp-content/themes/blogus/js/jquery.smartmenus.js%3Fver=6.3.2' id='smartmenus-js-js'></script>
 <script type='text/javascript' src='../../wp-content/themes/blogus/js/jquery.smartmenus.bootstrap.js%3Fver=6.3.2' id='bootstrap-smartmenus-js-js'></script>
-<link rel="https://api.w.org/" href="http://seanworld.net:10214/original/wp-json/" /><link rel="alternate" type="application/json" href="http://seanworld.net:10214/original/wp-json/wp/v2/posts/132" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://seanworld.net:10214/original/xmlrpc.php?rsd" />
+<link rel="https://api.w.org/" href="http://seanworld.net:10214/original/wp-json/" /><link rel="alternate" type="application/json" href="http://seanworld.net:10214/original/wp-json/wp/v2/posts/708" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://seanworld.net:10214/original/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.3.2" />
 <link rel="canonical" href="index.html" />
-<link rel='shortlink' href='http://seanworld.net:10214/original/?p=132' />
-<link rel="alternate" type="application/json+oembed" href="http://seanworld.net:10214/original/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fseanworld.net%3A10214%2Foriginal%2Ftechnology%2F132%2F" />
-<link rel="alternate" type="text/xml+oembed" href="http://seanworld.net:10214/original/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fseanworld.net%3A10214%2Foriginal%2Ftechnology%2F132%2F&#038;format=xml" />
+<link rel='shortlink' href='http://seanworld.net:10214/original/?p=708' />
+<link rel="alternate" type="application/json+oembed" href="http://seanworld.net:10214/original/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fseanworld.net%3A10214%2Foriginal%2Ftechnology%2F708%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://seanworld.net:10214/original/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fseanworld.net%3A10214%2Foriginal%2Ftechnology%2F708%2F&#038;format=xml" />
 <style>
   .bs-blog-post p:nth-of-type(1)::first-letter {
     display: none;
@@ -107,7 +107,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 
         </style>
     </head>
-<body class="post-template-default single single-post postid-132 single-format-standard wp-embed-responsive  ta-hide-date-author-in-list" >
+<body class="post-template-default single single-post postid-708 single-format-standard wp-embed-responsive  ta-hide-date-author-in-list" >
 <div id="page" class="site">
 <a class="skip-link screen-reader-text" href="index.html#content">
 Skip to content</a>
@@ -221,8 +221,8 @@ Skip to content</a>
             <a class="blogus-categories category-color-1" href="../../category/technology/index.html" alt="View all posts in Technology"> 
                                  Technology
                              </a>        </div>
-                                         <h1 class="title"> <a href="index.html" title="Permalink to: さくらのVPSを丸ごとバックアップ by Mondo Rescue">
-                  さくらのVPSを丸ごとバックアップ by Mondo Rescue</a>
+                                         <h1 class="title"> <a href="index.html" title="Permalink to: Vscode Python開発環境の構築on Windows">
+                  Vscode Python開発環境の構築on Windows</a>
                 </h1>
 
                 <div class="bs-info-author-block">
@@ -231,17 +231,26 @@ Skip to content</a>
                                     
                           
       <span class="bs-blog-date">
-            <a href="http://seanworld.net:10214/original/date/2023/10/"><time datetime="">October 13, 2023</time></a>
+            <a href="http://seanworld.net:10214/original/date/2023/10/"><time datetime="">October 25, 2023</time></a>
       </span>
-                                         <span class="blogus-tags tag-links">
-                      <a href="http://seanworld.net:10214/original/tag/%e3%83%86%e3%82%af%e3%83%8e%e3%83%ad%e3%82%b8%e3%83%bc/">#テクノロジー</a>                    </span>
-                                    </div>
+                                       </div>
                 </div>
               </div>
                             <article class="small single">
-                
-<h2 class="wp-block-heading"></h2>
-    	                                        <script>
+                <h2>PIPパッケージ</h2>
+<p>bs4 srt requests google-api-python-client deepl google-auth-oauthlib opencv-python moviepy ffmpeg Pillow</p>
+<h2>パッケージ in Ubnutu</h2>
+<pre><code>sudo apt install python3-bs4 python3-srt python3-requests python3-googleapi python3-google-auth-httplib2 python3-google-auth-oauthlib python3-google-auth</code></pre>
+<h2>Pythonのバージョンアップ</h2>
+<p>バージョンアップすると、<br />
+C:\Users\sysmente\AppData\Local\Programs\Python\Python312</p>
+<p>のように別フォルダになる。<br />
+PIPはバージョンごとに全く別になるため、都度上記パッケージリストをインストールすること</p>
+<h2>Vscode Python</h2>
+<p>Python Pylane の拡張機能(MS製)をインストールすること</p>
+<h2>インタプリタを選択</h2>
+<p>使用するPythonのバージョン／環境を指定するには、上に示した「Select Python Environment」というメッセージ（あるいは、同じ箇所に表示されるPythonのバージョンや環境）をクリックするか、［Ctrl］＋［Shift］＋［P］キー（macOSでは［Command］＋［Shift］＋［P］キー）でコマンドパレットを表示して、「select interpreter」などと入力する。これにより、Python機能拡張が認識しているPython環境が一覧表示されるので、そこから使用したいものを選択すればよい。</p>
+                                        <script>
     function pinIt()
     {
       var e = document.createElement('script');
@@ -254,29 +263,29 @@ Skip to content</a>
 
     <div class="post-share">
         <div class="post-share-icons cf"> 
-                        <a class="facebook" href="https://www.facebook.com/sharer.php?u=http://seanworld.net:10214/original/technology/132/" class="link " target="_blank" >
+                        <a class="facebook" href="https://www.facebook.com/sharer.php?u=http://seanworld.net:10214/original/technology/708/" class="link " target="_blank" >
             <i class="fab fa-facebook"></i></a>
             
-            <a class="twitter" href="http://twitter.com/share?url=http://seanworld.net:10214/original/technology/132/&#038;text=%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEVPS%E3%82%92%E4%B8%B8%E3%81%94%E3%81%A8%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%20by%20Mondo%20Rescue" class="link " target="_blank">
+            <a class="twitter" href="http://twitter.com/share?url=http://seanworld.net:10214/original/technology/708/&#038;text=Vscode%20Python%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89on%20Windows" class="link " target="_blank">
             <i class="fab fa-twitter"></i></a>
             
-            <a class="envelope" href="mailto:?subject=さくらのVPSを丸ごとバックアップ%20by%20Mondo%20Rescue&#038;body=http://seanworld.net:10214/original/technology/132/" class="link " target="_blank" >
+            <a class="envelope" href="mailto:?subject=Vscode%20Python開発環境の構築on%20Windows&#038;body=http://seanworld.net:10214/original/technology/708/" class="link " target="_blank" >
             <i class="fas fa-envelope-open"></i></a>
             
-            <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=http://seanworld.net:10214/original/technology/132/&#038;title=%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEVPS%E3%82%92%E4%B8%B8%E3%81%94%E3%81%A8%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%20by%20Mondo%20Rescue" class="link " target="_blank" >
+            <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=http://seanworld.net:10214/original/technology/708/&#038;title=Vscode%20Python%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89on%20Windows" class="link " target="_blank" >
             <i class="fab fa-linkedin"></i></a>
             
             <a href="javascript:pinIt();" class="pinterest"><i class="fab fa-pinterest"></i></a>
             
-            <a class="telegram" href="https://t.me/share/url?url=http://seanworld.net:10214/original/technology/132/&#038;title=%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEVPS%E3%82%92%E4%B8%B8%E3%81%94%E3%81%A8%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%20by%20Mondo%20Rescue" target="_blank" >
+            <a class="telegram" href="https://t.me/share/url?url=http://seanworld.net:10214/original/technology/708/&#038;title=Vscode%20Python%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89on%20Windows" target="_blank" >
             <i class="fab fa-telegram"></i>
             </a>
             
-            <a class="whatsapp" href="https://api.whatsapp.com/send?text=http://seanworld.net:10214/original/technology/132/&#038;title=%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEVPS%E3%82%92%E4%B8%B8%E3%81%94%E3%81%A8%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%20by%20Mondo%20Rescue" target="_blank" >
+            <a class="whatsapp" href="https://api.whatsapp.com/send?text=http://seanworld.net:10214/original/technology/708/&#038;title=Vscode%20Python%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89on%20Windows" target="_blank" >
             <i class="fab fa-whatsapp"></i>
             </a>
             
-            <a class="reddit" href="https://www.reddit.com/submit?url=http://seanworld.net:10214/original/technology/132/&#038;title=%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEVPS%E3%82%92%E4%B8%B8%E3%81%94%E3%81%A8%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%20by%20Mondo%20Rescue" target="_blank" >
+            <a class="reddit" href="https://www.reddit.com/submit?url=http://seanworld.net:10214/original/technology/708/&#038;title=Vscode%20Python%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89on%20Windows" target="_blank" >
             <i class="fab fa-reddit"></i>
             </a>
                         <a class="print-r" href="javascript:window.print()"> <i class="fas fa-print"></i></a>
@@ -288,7 +297,7 @@ Skip to content</a>
                 
 	<nav class="navigation post-navigation" aria-label="Posts">
 		<h2 class="screen-reader-text">Post navigation</h2>
-		<div class="nav-links"><div class="nav-next"><a href="../212/index.html" rel="next"> Github x VS code 環境構築 2021年版 <div class="fa fa-angle-double-right"></div><span></span></a></div></div>
+		<div class="nav-links"><div class="nav-previous"><a href="../698/index.html" rel="prev"><div class="fa fa-angle-double-left"></div><span></span> Git UPdate方法 </a></div></div>
 	</nav>                          </article>
             </div>
           
@@ -310,33 +319,6 @@ Skip to content</a>
                         <div class="row">
                           <!-- featured_post -->
                                                             <!-- blog -->
-                                  <div class="col-md-4">
-                                  <div class="bs-blog-post three md back-img bshre mb-md-0" >
-                                    <a class="link-div" href="../708/index.html"></a>
-                                    <div class="inner">
-                                                                                        <div class="bs-blog-category">
-            <a class="blogus-categories category-color-1" href="../../category/technology/index.html" alt="View all posts in Technology"> 
-                                 Technology
-                             </a>        </div>
-         
-                                                                                                                  <h4 class="title sm mb-0"> <a href="../708/index.html" title="Permalink to: Vscode Python開発環境の構築on Windows">
-                                              Vscode Python開発環境の構築on Windows</a> </h4> 
-                                      <div class="bs-blog-meta">
-                                            <span class="bs-author"> 
-        <a class="auth" href="http://seanworld.net:10214/original/author/seanworld9/"> 
-        <img alt='' src='http://2.gravatar.com/avatar/b736fb79861abfbc06ae15092c2513af?s=150&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b736fb79861abfbc06ae15092c2513af?s=300&#038;d=mm&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' loading='lazy' decoding='async'/>seanworld9 
-        </a>
-    </span>
-      
-      <span class="bs-blog-date">
-            <a href="http://seanworld.net:10214/original/date/2023/10/"><time datetime="">October 25, 2023</time></a>
-      </span>
-                                       </div>
-                                    </div>
-                                  </div>
-                                  </div>
-                                <!-- blog -->
-                                                                      <!-- blog -->
                                   <div class="col-md-4">
                                   <div class="bs-blog-post three md back-img bshre mb-md-0" >
                                     <a class="link-div" href="../698/index.html"></a>
@@ -390,6 +372,33 @@ Skip to content</a>
                                   </div>
                                   </div>
                                 <!-- blog -->
+                                                                      <!-- blog -->
+                                  <div class="col-md-4">
+                                  <div class="bs-blog-post three md back-img bshre mb-md-0" >
+                                    <a class="link-div" href="../678/index.html"></a>
+                                    <div class="inner">
+                                                                                        <div class="bs-blog-category">
+            <a class="blogus-categories category-color-1" href="../../category/technology/index.html" alt="View all posts in Technology"> 
+                                 Technology
+                             </a>        </div>
+         
+                                                                                                                  <h4 class="title sm mb-0"> <a href="../678/index.html" title="Permalink to: Ubuntu 22.04以降でsshd待ち受けPortが変更できない">
+                                              Ubuntu 22.04以降でsshd待ち受けPortが変更できない</a> </h4> 
+                                      <div class="bs-blog-meta">
+                                            <span class="bs-author"> 
+        <a class="auth" href="http://seanworld.net:10214/original/author/seanworld9/"> 
+        <img alt='' src='http://2.gravatar.com/avatar/b736fb79861abfbc06ae15092c2513af?s=150&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b736fb79861abfbc06ae15092c2513af?s=300&#038;d=mm&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' loading='lazy' decoding='async'/>seanworld9 
+        </a>
+    </span>
+      
+      <span class="bs-blog-date">
+            <a href="http://seanworld.net:10214/original/date/2023/10/"><time datetime="">October 18, 2023</time></a>
+      </span>
+                                       </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                                <!-- blog -->
                                                                 </div>
                           </div>
                     </div>
@@ -404,7 +413,7 @@ Skip to content</a>
 <h2 class="wp-block-heading">Recent Posts</h2>
 
 
-<ul class="wp-block-latest-posts__list wp-block-latest-posts"><li><a class="wp-block-latest-posts__post-title" href="../708/index.html">Vscode Python開発環境の構築on Windows</a></li>
+<ul class="wp-block-latest-posts__list wp-block-latest-posts"><li><a class="wp-block-latest-posts__post-title" href="index.html">Vscode Python開発環境の構築on Windows</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="../698/index.html">Git UPdate方法</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="../690/index.html">WordPressで画像を任意のフォルダにアップロードする</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="../678/index.html">Ubuntu 22.04以降でsshd待ち受けPortが変更できない</a></li>
@@ -440,13 +449,13 @@ Skip to content</a>
                     <div class="row">
                     <div class="col-md-6 col-lg-3">
             <div class="bs-blog-post three md back-img bshre mb-lg-0" ">
-              <a class="link-div" href="../708/index.html"></a>
+              <a class="link-div" href="index.html"></a>
               <div class="inner">
                             <div class="bs-blog-category">
             <a class="blogus-categories category-color-1" href="../../category/technology/index.html" alt="View all posts in Technology"> 
                                  Technology
                              </a>        </div>
-                        <h4 class="title sm mb-0"> <a href="../708/index.html" title="Permalink to: Vscode Python開発環境の構築on Windows"> Vscode Python開発環境の構築on Windows</a> </h4> 
+                        <h4 class="title sm mb-0"> <a href="index.html" title="Permalink to: Vscode Python開発環境の構築on Windows"> Vscode Python開発環境の構築on Windows</a> </h4> 
               </div>
             </div>
           </div>
