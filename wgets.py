@@ -2,7 +2,7 @@ from urllib.request import urlopen
 from xml.etree import ElementTree
 import subprocess
 
-url = "http://seanworld.net:10214/original/post-sitemap.xml"
+url = "http://seanworld.net:10214/original/wp-sitemap-posts-post-1.xml"
 
 prefixText = "http://seanworld.net:10214/original/\nhttp://seanworld.net:10214/original/category/japan/\nhttp://seanworld.net:10214/original/category/trip/\nhttp://seanworld.net:10214/original/category/money/\nhttp://seanworld.net:10214/original/category/technology/\nhttp://seanworld.net:10214/original/category/gadget/\nhttp://seanworld.net:10214/original/category/diy/\n"
 
